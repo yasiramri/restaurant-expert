@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#739072" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="icon" href="./favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://use.fontawesome.com/b070c8f1df.js"></script>
+    <link rel="manifest" href="manifest.json" />
+    <title>Restaurant Apps</title>
+  </head>
+  <body>
+    <a href="#mainContent" class="skip-link" tabindex="1">Menuju ke konten</a>
+    <header class="app-bar">
+      <div class="app-bar__menu">
+        <button id="hamburgerButton" tabindex="2">☰</button>
+      </div>
+      <div class="app-bar__brand">
+        <a href="http://localhost:8080/"
+          ><img src="./images/logo.png" alt="laper.in" tabindex="3"
+        /></a>
+      </div>
+      <nav id="navigationDrawer" class="app-bar__navigation">
+        <ul>
+          <li tabindex="4"><a href="#/favorite">Favorite</a></li>
+          <li tabindex="4">
+            <a href="https://github.com/yasiramri">About Us</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title" tabindex="5">
+          Menyajikan Cita Rasa yang Tak Terlupakan
+        </h1>
+        <p class="hero-tagline" tabindex="6">
+          Kami mengundang Anda untuk merasakan perpaduan sempurna antara cita
+          rasa tak terlupakan, suasana yang nyaman, dan pelayanan terbaik.
+        </p>
+      </div>
+    </div>
+    <main id="mainContent">
+      <div>
+        <h1 class="restaurant-title" tabindex="7">Explore Restaurant</h1>
+        <div id="restaurant-list" tabindex="8"></div>
+      </div>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <a href="http://localhost:8080/">Copyright © 2023 - Laper.in</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
