@@ -34,7 +34,6 @@ body {
 .app-bar .app-bar__menu button {
   background-color: transparent;
   border: none;
-  font-size: 18px;
   padding: 8px;
   cursor: pointer;
 }
@@ -69,6 +68,7 @@ body {
   padding: 8px;
   margin-bottom: 5px;
   width: 100%;
+  font-size: 23px;
 }
 
 .skip-link {
@@ -196,6 +196,7 @@ main {
 .restaurant-item .restaurant-item__content h3 a {
   color: #739072;
   text-decoration: none;
+  font-size: 35px;
 }
  
 .restaurant-item .restaurant-item__content p {
@@ -433,4 +434,13 @@ footer a {
   font-size: 18px;
   color: white;
   cursor: pointer;
+}
+
+#hamburgerButton {
+  background-color: transparent;
+  border: none;
+  font-size: 35px;
+  padding: 8px;
+  cursor: pointer;
+  color: #fff; /* Set the color of the hamburger icon */
 }
