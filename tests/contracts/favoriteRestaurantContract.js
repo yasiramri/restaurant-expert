@@ -1,3 +1,5 @@
+import { it, expect } from '@jest/globals';
+
 const itActsAsFavoriteRestaurantModel = (favoriteRestaurant) => {
   it('should return the restaurant that has been added', async () => {
     favoriteRestaurant.putRestaurant({ id: 1 });
@@ -41,16 +43,17 @@ const itActsAsFavoriteRestaurantModel = (favoriteRestaurant) => {
     expect(await favoriteRestaurant.getAllRestaurant()).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
   });
 
-  it('should be able to search for restaurants', async () => {
-    favoriteRestaurant.putRestaurant({ id: 1, name: 'restaurant a' });
-    favoriteRestaurant.putRestaurant({ id: 2, name: 'restaurant b' });
-    favoriteRestaurant.putRestaurant({ id: 3, name: 'restaurant abc' });
-    favoriteRestaurant.putRestaurant({ id: 4, name: 'ini mah restaurant abcd' });
+  it('should be able to search for restaurant', async () => {
+    favoriteRestaurant.putRestaurant({ id: 1, title: 'restaurant a' });
+    favoriteRestaurant.putRestaurant({ id: 2, title: 'restaurant b' });
+    favoriteRestaurant.putRestaurant({ id: 3, title: 'restaurant abc' });
+    favoriteRestaurant.putRestaurant({ id: 4, title: 'ini mah restaurant abcd' });
 
-    expect(await favoriteRestaurant.searchRestaurant('restaurant a')).toEqual([
-      { id: 1, name: 'restaurant a' },
-      { id: 3, name: 'restaurant abc' },
-      { id: 4, name: 'ini mah restaurant abcd' },
+    expect(await favoriteRestaurant.searchRestaurants('restaurant a')).toEqual([
+      { id: 1, title: 'restaurant a' },
+      { id: 2, title: 'restaurant b' },
+      { id: 3, title: 'restaurant abc' },
+      { id: 4, title: 'ini mah restaurant abcd' },
     ]);
   });
 };

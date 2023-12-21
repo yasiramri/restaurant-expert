@@ -1,17 +1,14 @@
 class FavoriteRestaurantSearchPresenter {
   constructor({ favoriteRestaurants, view }) {
-    this._listenToSearchRequestByUser();
     this._favoriteRestaurants = favoriteRestaurants;
     this._view = view;
+
+    this._listenToSearchRequestByUser();
   }
 
   _listenToSearchRequestByUser() {
-    this._queryElement = document.getElementById('query');
     this._view.runWhenUserIsSearching((latestQuery) => {
-      this._searchRestaurants(this.latestQuery);
-    });
-    this._queryElement.addEventListener('change', (event) => {
-      this._searchRestaurants(event.target.value);
+      this._searchRestaurants(latestQuery);
     });
   }
 
@@ -29,7 +26,7 @@ class FavoriteRestaurantSearchPresenter {
   }
 
   _showFoundRestaurants(restaurants) {
-    this._view._showFoundRestaurants(restaurants);
+    this._view.showRestaurants(restaurants);
   }
 
   get latestQuery() {

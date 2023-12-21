@@ -31,7 +31,7 @@ const FavoriteRestaurantArray = {
     favoriteRestaurant = favoriteRestaurant.filter((restaurant) => restaurant.id != id);
   },
 
-  searchRestaurant(query) {
+  searchRestaurants(query) {
     return this.getAllRestaurant()
       .filter((restaurant) => {
         const loweredCaseRestaurantName = (restaurant.name || '-').toLowerCase();

@@ -18,7 +18,7 @@ class FavoriteRestaurantSearchView {
     });
   }
 
-  showRestaurant(restaurants) {
+  showRestaurants(restaurants) {
     let html;
     if (restaurants.length > 0) {
       html = restaurants.reduce(
