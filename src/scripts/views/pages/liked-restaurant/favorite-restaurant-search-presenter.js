@@ -1,11 +1,15 @@
 class FavoriteRestaurantSearchPresenter {
-  constructor({ favoriteRestaurants }) {
+  constructor({ favoriteRestaurants, view }) {
     this._listenToSearchRequestByUser();
     this._favoriteRestaurants = favoriteRestaurants;
+    this._view = view;
   }
 
   _listenToSearchRequestByUser() {
     this._queryElement = document.getElementById('query');
+    this._view.runWhenUserIsSearching((latestQuery) => {
+      this._searchRestaurants(this.latestQuery);
+    });
     this._queryElement.addEventListener('change', (event) => {
       this._searchRestaurants(event.target.value);
     });
@@ -25,20 +29,7 @@ class FavoriteRestaurantSearchPresenter {
   }
 
   _showFoundRestaurants(restaurants) {
-    const html = restaurants.reduce(
-      (carry, restaurant) => carry.concat(`
-        <li class="restaurant">
-          <span class="restaurant__name">${restaurant.name || '-'}</span>
-        </li>
-      `),
-      '',
-    );
-
-    document.querySelector('.restaurants').innerHTML = html;
-
-    document
-      .getElementById('restaurant-search-container')
-      .dispatchEvent(new Event('restaurants:searched:updated'));
+    this._view._showFoundRestaurants(restaurants);
   }
 
   get latestQuery() {

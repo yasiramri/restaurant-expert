@@ -1,13 +1,15 @@
 import { spyOn } from 'jest-mock';
 import {
-  it, describe, expect, beforeEach, jest
+  it, describe, expect, beforeEach, jest,
 } from '@jest/globals';
 import FavoriteRestaurantSearchPresenter from '../src/scripts/views/pages/liked-restaurant/favorite-restaurant-search-presenter';
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-idb';
+import FavoriteRestaurantSearchView from '../src/scripts/views/pages/liked-restaurant/favorite-restaurants-search-view';
 
 describe('Searching restaurants', () => {
   let presenter;
   let favoriteRestaurants;
+  let view;
 
   const searchRestaurants = (query) => {
     const queryElement = document.getElementById('query');
@@ -17,24 +19,15 @@ describe('Searching restaurants', () => {
   };
 
   const setRestaurantSearchContainer = () => {
-    document.body.innerHTML = `
-      <div id="restaurant-search-container">
-        <input id="query" type="text">
-        <div class="restaurant-result-container">
-          <ul class="restaurants">
-          </ul>
-        </div>
-      </div>
-    `;
+    view = new FavoriteRestaurantSearchView();
+    document.body.innerHTML = view.getTemplate();
   };
 
   const constructPresenter = () => {
-    favoriteRestaurants = {
-      getAllRestaurant: jest.fn(),
-      searchRestaurants: jest.fn(),
-    };
+    favoriteRestaurants = spyOnAllFunctions(FavoriteRestaurantIdb);
     presenter = new FavoriteRestaurantSearchPresenter({
       favoriteRestaurants,
+      view,
     });
   };
 
@@ -176,5 +169,30 @@ describe('Searching restaurants', () => {
     });
   });
 
-  describe('When no favorite restaurants could be found')
+  describe('When no favorite restaurants could be found', () => {
+    it('should show the empty message', (done) => {
+      document
+        .getElementById('restaurant-search-container')
+        .addEventListener('restaurants:searched:updated', () => {
+          expect(document.querySelectorAll('.restaurants__not__found').length).toEqual(1);
+          done();
+        });
+
+      favoriteRestaurants.searchRestaurants.mockImplementation((query) => []);
+      searchRestaurants('restaurant a');
+    });
+
+    it('should not show any restaurant', (done) => {
+      document.getElementById('restaurant-search-container')
+        .addEventListener('restaurants:searched:updated', () => {
+          expect(document.querySelectorAll('.restaurant').length).toEqual(0);
+
+          done();
+        });
+
+      favoriteRestaurants.searchRestaurants.mockImplementation((query) => []);
+
+      searchRestaurants('restaurant a');
+    });
+  });
 });

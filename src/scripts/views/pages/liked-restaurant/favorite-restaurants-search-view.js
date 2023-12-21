@@ -1,14 +1,15 @@
 class FavoriteRestaurantSearchView {
-    getTemplate() {
+  getTemplate() {
     return `
       <div id="restaurant-search-container">
         <input id="query" type="text">
-
+ 
         <div class="restaurant-result-container">
           <ul class="restaurants">
           </ul>
+        </div>
       </div>
-  `;
+    `;
   }
 
   runWhenUserIsSearching(callback) {
@@ -22,10 +23,10 @@ class FavoriteRestaurantSearchView {
     if (restaurants.length > 0) {
       html = restaurants.reduce(
         (carry, restaurant) => carry.concat(`
-          <li class="restaurant">
-            <span class="restaurant__name">${restaurant.name || '-'}</span>
-          </li>
-        `),
+            <li class="restaurant">
+              <span class="restaurant__name">${restaurant.name || '-'}</span>
+            </li>
+          `),
         '',
       );
     } else {
@@ -38,3 +39,5 @@ class FavoriteRestaurantSearchView {
       .dispatchEvent(new Event('restaurants:searched:updated'));
   }
 }
+
+export default FavoriteRestaurantSearchView;
