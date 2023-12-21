@@ -7,14 +7,19 @@ class FavoriteRestaurantSearchPresenter {
   _listenToSearchRequestByUser() {
     this._queryElement = document.getElementById('query');
     this._queryElement.addEventListener('change', (event) => {
-      this._searchRestaurant(event.target.value);
+      this._searchRestaurants(event.target.value);
     });
   }
 
-  async _searchRestaurant(latestQuery) {
+  async _searchRestaurants(latestQuery) {
     this._latestQuery = latestQuery.trim();
 
-    const foundRestaurants = await this._favoriteRestaurants.searchRestaurant(this.latestQuery);
+    let foundRestaurants;
+    if (this.latestQuery.length > 0) {
+      foundRestaurants = await this._favoriteRestaurants.searchRestaurants(this.latestQuery);
+    } else {
+      foundRestaurants = await this._favoriteRestaurants.getAllRestaurant();
+    }
 
     this._showFoundRestaurants(foundRestaurants);
   }

@@ -9,7 +9,7 @@ describe('Searching restaurants', () => {
   let presenter;
   let favoriteRestaurants;
 
-  const searchRestaurant = (query) => {
+  const searchRestaurants = (query) => {
     const queryElement = document.getElementById('query');
     queryElement.value = query;
 
@@ -29,9 +29,12 @@ describe('Searching restaurants', () => {
   };
 
   const constructPresenter = () => {
-    spyOn(FavoriteRestaurantIdb, 'searchRestaurant');
+    favoriteRestaurants = {
+      getAllRestaurant: jest.fn(),
+      searchRestaurants: jest.fn(),
+    };
     presenter = new FavoriteRestaurantSearchPresenter({
-      favoriteRestaurants: FavoriteRestaurantIdb,
+      favoriteRestaurants,
     });
   };
 
@@ -42,19 +45,19 @@ describe('Searching restaurants', () => {
 
   describe('When query is not empty', () => {
     it('should be able to capture the query typed by the user', () => {
-      FavoriteRestaurantIdb.searchRestaurant.mockImplementation(() => []);
+      favoriteRestaurants.searchRestaurants.mockImplementation(() => []);
 
-      searchRestaurant('restaurant a');
+      searchRestaurants('restaurant a');
 
       expect(presenter.latestQuery).toEqual('restaurant a');
     });
 
     it('should ask the model to search for liked restaurants', () => {
-      FavoriteRestaurantIdb.searchRestaurant.mockImplementation(() => []);
+      favoriteRestaurants.searchRestaurants.mockImplementation(() => []);
 
-      searchRestaurant('restaurant a');
+      searchRestaurants('restaurant a');
 
-      expect(FavoriteRestaurantIdb.searchRestaurant).toHaveBeenCalledWith('restaurant a');
+      expect(favoriteRestaurants.searchRestaurants).toHaveBeenCalledWith('restaurant a');
     });
 
     it('should show the found restaurants', () => {
@@ -105,7 +108,7 @@ describe('Searching restaurants', () => {
           done();
         });
 
-      FavoriteRestaurantIdb.searchRestaurant.mockImplementation((query) => {
+      favoriteRestaurants.searchRestaurants.mockImplementation((query) => {
         if (query === 'restaurant a') {
           return [
             { id: 111, name: 'restaurant abc' },
@@ -117,7 +120,7 @@ describe('Searching restaurants', () => {
         return [];
       });
 
-      searchRestaurant('restaurant a');
+      searchRestaurants('restaurant a');
     });
 
     it('should show the name of the restaurants found by Favorite Restaurants', (done) => {
@@ -133,7 +136,7 @@ describe('Searching restaurants', () => {
           done();
         });
 
-      FavoriteRestaurantIdb.searchRestaurant.mockImplementation((query) => {
+      favoriteRestaurants.searchRestaurants.mockImplementation((query) => {
         if (query === 'restaurant a') {
           return [
             { id: 111, name: 'restaurant abc' },
@@ -145,23 +148,33 @@ describe('Searching restaurants', () => {
         return [];
       });
 
-      searchRestaurant('restaurant a');
+      searchRestaurants('restaurant a');
     });
   });
 
   describe('When query is empty', () => {
     it('should capture the query as empty', () => {
-      searchRestaurant(' ');
+      favoriteRestaurants.getAllRestaurant.mockImplementation(() => []);
+      searchRestaurants(' ');
       expect(presenter.latestQuery.length).toEqual(0);
 
-      searchRestaurant('    ');
+      searchRestaurants('    ');
       expect(presenter.latestQuery.length).toEqual(0);
 
-      searchRestaurant('');
+      searchRestaurants('');
       expect(presenter.latestQuery.length).toEqual(0);
 
-      searchRestaurant('\t');
+      searchRestaurants('\t');
       expect(presenter.latestQuery.length).toEqual(0);
     });
+
+    it('should show all favorite restaurants', () => {
+      favoriteRestaurants.getAllRestaurant.mockImplementation(() => []);
+      searchRestaurants('    ');
+
+      expect(favoriteRestaurants.getAllRestaurant).toHaveBeenCalled();
+    });
   });
+
+  describe('When no favorite restaurants could be found')
 });
