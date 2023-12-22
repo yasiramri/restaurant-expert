@@ -47,15 +47,15 @@ const createRestaurantDetailTemplate = (restaurant) => `
 const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item">
     <div class="restaurant-item__header">
-      <img class="restaurant-item__header__poster" alt="${restaurant.name}"
+      <img class="restaurant-item__header__poster" alt="${restaurant.name || '-'}"
            src="${CONFIG.BASE_IMAGE_URL}small/${restaurant.pictureId}">
       <div class="restaurant-item__header__rating">
-        <p>⭐️<span class="restaurant-item__header__rating__score">${restaurant.rating}</span></p>
+        <p>⭐️<span class="restaurant-item__header__rating__score">${restaurant.rating || '-'}</span></p>
       </div>
     </div>
     <div class="restaurant-item__content">
-      <h3><a href="#/detail/${restaurant.id}">${restaurant.name}</a></h3>
-      <p>${restaurant.description}</p>
+      <h3 class="restaurant__name"><a href="#/detail/${restaurant.id}">${restaurant.name || '-'}</a></h3>
+      <p>${restaurant.description || '-'}</p>
       <p class="restaurant-item__city">City: ${restaurant.city}</p>
     </div>
   </div>
