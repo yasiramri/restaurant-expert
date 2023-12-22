@@ -95,7 +95,6 @@ body {
   align-items: center;
   width: 100%;
   min-height: 380px;
-  background-image: url(/src/public/images/heros/hero-image_2.jpg);
   background-color: rgba(0, 0, 0, 0.6);;
   background-position: center;
   background-blend-mode: multiply;
