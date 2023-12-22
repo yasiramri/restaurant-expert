@@ -3,7 +3,6 @@ import FavoriteRestaurantView from './liked-restaurant/favorite-restaurants-view
 import FavoriteRestaurantShowPresenter from './liked-restaurant/favorite-restaurant-show-presenter';
 import FavoriteRestaurantSearchPresenter from './liked-restaurant/favorite-restaurant-search-presenter';
 
-
 const view = new FavoriteRestaurantView();
 
 const Favorite = {

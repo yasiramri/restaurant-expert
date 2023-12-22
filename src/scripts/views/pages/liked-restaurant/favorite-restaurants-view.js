@@ -14,17 +14,6 @@ class FavoriteRestaurantView {
     `;
   }
 
-  getFavoriteRestaurantTemplate() {
-    return `
-    <div class="content">
-      <h2 class="content__heading">Your Liked Restaurant</h2>
-    
-      <div id="restaurants" class="restaurants">
-      </div>
-    </div>
-    `;
-  }
-
   runWhenUserIsSearching(callback) {
     document.getElementById('query').addEventListener('change', (event) => {
       callback(event.target.value);
@@ -46,7 +35,7 @@ class FavoriteRestaurantView {
   _getEmptyRestaurantTemplate() {
     return `
       <div class="restaurant-item__not__found">
-        Tidak ada film untuk ditampilkan
+        Tidak ada restaurant untuk ditampilkan
       </div>
     `;
   }
