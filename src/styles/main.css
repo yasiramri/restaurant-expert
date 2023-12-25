@@ -95,6 +95,7 @@ body {
   align-items: center;
   width: 100%;
   min-height: 380px;
+  background-image: url(/src/public/images/sharp/hero-image_2-large.jpg);
   background-color: rgba(0, 0, 0, 0.6);;
   background-position: center;
   background-blend-mode: multiply;
@@ -349,6 +350,18 @@ footer a {
     margin-right: 20px;
     margin-left: 20px;
   }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 380px;
+    background-image: url(/src/public/images/sharp/hero-image_1-small.jpg);
+    background-color: rgba(0, 0, 0, 0.6);;
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+  }
 }
 
 /* 
@@ -364,6 +377,18 @@ footer a {
     margin-right: 20px;
     margin-left: 20px;
   }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 380px;
+    background-image: url(/src/public/images/sharp/hero-image_1-small.jpg);
+    background-color: rgba(0, 0, 0, 0.6);;
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+  }
 }
 
 /* 
@@ -372,9 +397,22 @@ footer a {
 
 @media screen and (max-width: 425px) {
 
+  .hero {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 380px;
+    background-image: url(/src/public/images/sharp/hero-image_1-small.jpg);
+    background-color: rgba(0, 0, 0, 0.6);;
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+  }
+
   #restaurant-list {
     display: grid;
     grid-template-columns: 1fr;
+    background-image: url(/src/public/images/sharp/hero-image_1-small.jpg);;
     gap: 20px;
     justify-items: center;
     margin-right: 20px;
